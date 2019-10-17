@@ -8,7 +8,6 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private static int points = 0;
+
     public void on_button_click(View view)
     {
         EditText simpleEditText = (EditText) findViewById(R.id.simpleEditText);
@@ -71,10 +72,13 @@ public class MainActivity extends AppCompatActivity {
         String answer = Integer.toString(number);
 
         tv.setText("The correct answer is: " + answer);
+        TextView pts = this.findViewById(R.id.points);
 
         if(guess.equals(answer))
         {
             Toast.makeText(getApplicationContext(), "Congrats!", Toast.LENGTH_SHORT).show();
+            points++;
+            pts.setText(Integer.toString(points));
         }
         else
         {
