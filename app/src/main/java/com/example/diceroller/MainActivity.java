@@ -8,10 +8,13 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -58,12 +61,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void on_button_click(View view)
     {
+        EditText simpleEditText = (EditText) findViewById(R.id.simpleEditText);
+        String guess = simpleEditText.getText().toString();
+
         TextView tv = this.findViewById(R.id.myTextView);
 
         Random r = new Random();
         int number = r.nextInt(6);
+        String answer = Integer.toString(number);
 
+        tv.setText("The correct answer is: " + answer);
 
-        tv.setText(Integer.toString(number));
+        if(guess.equals(answer))
+        {
+            Toast.makeText(getApplicationContext(), "Congrats!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Try again", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
